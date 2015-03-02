@@ -1,0 +1,23 @@
+# dot-gitignore
+
+# Config stuff
+.gradle
+/gradle/gradle/
+/gradle/gradlew
+/gradle/gradlew.bat
+/local.properties
+/telemed/src/main/assets/config.properties
+.DS_Store
+
+# Intellij project files
+*.iml
+.idea/
+
+# Generated data
+build/
+
+# Calabash
+test_servers/
+.irb-history
+*.png
+*.pdf

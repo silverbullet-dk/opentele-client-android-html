@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- General -->
+    <string name="app_name">OpenTele</string>
+    <string name="action_settings">Settings</string>
+
+    <!-- Webview -->
+    <string name="error_header_text">Error</string>
+    <string name="error_message_text">Error communicating with OpenTele. Please try again later.</string>
+    <string name="reload_button_text">Try again</string>
+
+    <!-- Reminder -->
+    <string name="alarm_alarm">Alarm</string>
+    <string name="alarm_user_prompt">Du skal besvare et spørgeskema</string>
+
+</resources>

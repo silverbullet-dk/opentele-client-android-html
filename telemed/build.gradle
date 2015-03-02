@@ -1,0 +1,75 @@
+apply plugin: 'com.android.application'
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:1.0.0'
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+android {
+    compileSdkVersion 21
+    buildToolsVersion "20.0.0"
+
+    defaultConfig {
+        minSdkVersion 18
+        targetSdkVersion 21
+        versionCode 201
+        versionName "2.0.1"
+    }
+
+    signingConfigs {
+        release {
+            
+        }
+    }
+    buildTypes {
+        release {
+            signingConfig signingConfigs.release
+        }
+    }
+
+    packagingOptions {
+        exclude 'LICENSE.txt'
+    }
+
+    def environment = project.hasProperty('env') ? env : 'dev'
+    applicationVariants.all { variant ->
+        variant.outputs.each { output ->
+            def apk = output.outputFile;
+            def newName = "OpenTele-Html5-${environment}-${defaultConfig.versionName}.apk";
+
+            def outputFolder = "${apk.parentFile}"
+            output.outputFile = new File(outputFolder, newName);
+
+            println "INFO: Set outputFile to ${output.outputFile} for [${variant.name}]"
+        }
+    }
+
+    generateConfig()
+}
+
+dependencies {
+    compile 'com.google.code.gson:gson:2.3'
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'junit:junit:4.11'
+}
+
+def generateConfig() {
+    def defaultUrl = ''
+    def url = project.hasProperty('openTeleUrl') ? openTeleUrl : defaultUrl
+
+    println "INFO: Set HTML5 client web server url to $url"
+
+    def prop = new Properties()
+    prop.setProperty("OpenTeleUrl", url)
+    def propFile = new File("${project.projectDir}/src/main/assets/config.properties")
+    propFile.createNewFile()
+    prop.store(propFile.newWriter(), null)
+}
