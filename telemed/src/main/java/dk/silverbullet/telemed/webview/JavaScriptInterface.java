@@ -4,7 +4,11 @@ import android.app.Activity;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebView;
 
+import com.google.gson.Gson;
+
 import org.json.JSONObject;
+
+import java.util.List;
 import java.util.Map;
 
 import dk.silverbullet.telemed.DeviceInformation;
@@ -113,7 +117,9 @@ public class JavaScriptInterface {
      */
     @JavascriptInterface
     public String getQuestionnairesToHighlight() {
-        return ReminderService.getQuestionnairesToHighlight().toString();
+        Gson gson = new Gson();
+        List<String> questionnairesToHighlight = ReminderService.getQuestionnairesToHighlight();
+        return gson.toJson(questionnairesToHighlight);
     }
 
     /**

@@ -20,13 +20,13 @@ android {
     defaultConfig {
         minSdkVersion 18
         targetSdkVersion 21
-        versionCode 201
-        versionName "2.0.1"
+        versionCode 203
+        versionName "2.0.3"
     }
 
     signingConfigs {
         release {
-            
+
         }
     }
     buildTypes {
